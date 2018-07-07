@@ -10,6 +10,7 @@ requests = "*"
 misaka = "*"
 codecov = "*"
 tapioca-github = "*"
+django-heroku = "*"
 
 [dev-packages]
 
