@@ -26,7 +26,7 @@ PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 SECRET_KEY = '7r1%7g!l@g+h^ej#s)89(z!m=z#47dqiynl6*y-cu&8yy_%gh6'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 
 # Application definition
@@ -132,3 +132,8 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Activate Django-Heroku.
 django_heroku.settings(locals())
+
+try:
+    from .local_settings import *
+except ImportError:
+    pass
