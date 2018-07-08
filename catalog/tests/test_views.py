@@ -27,4 +27,4 @@ class ProductListTestCase(TestCase):
         response = self.client.get(self.url)
         self.assertTrue('product_list' in response.context)
         product_list = response.context['product_list']
-        self.assertEquals(product_list.count(), 10)
+        self.assertEquals(product_list.count(), 3)
