@@ -138,6 +138,15 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # Activate Django-Heroku.
 django_heroku.settings(locals())
 
+# E-mail
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+DEFAULT_FROM_EMAIL = 'maurodeval41@gmail.com'
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'maurodeval41@gmail.com'
+EMAIL_HOST_PASSWORD = 'MaceioDeveloperMauroSantos176'
+EMAIL_PORT = 587
+
 try:
     from .local_settings import *
 except ImportError:
