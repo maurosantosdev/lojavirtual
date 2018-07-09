@@ -150,9 +150,9 @@ EMAIL_PORT = 587
 
 # auth
 LOGIN_URL = 'login'
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = ''
 # LOGIN_REDIRECT_URL = '/areacliente/'
-LOGOUT_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = ''
 
 try:
     from .local_settings import *
