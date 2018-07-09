@@ -38,9 +38,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # libs
+    'bootstrap3',
     # apps
     'core',
     'catalog',
+    'areadocliente',
 ]
 
 MIDDLEWARE = [
@@ -59,7 +61,7 @@ ROOT_URLCONF = 'ecommerce.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['./templates',],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -145,6 +147,12 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'maurodeval41@gmail.com'
 EMAIL_HOST_PASSWORD = 'MaceioDeveloperMauroSantos176'
 EMAIL_PORT = 587
+
+# auth
+LOGIN_URL = 'login'
+LOGIN_REDIRECT_URL = '/'
+# LOGIN_REDIRECT_URL = '/areacliente/'
+LOGOUT_REDIRECT_URL = '/'
 
 try:
     from .local_settings import *

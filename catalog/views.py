@@ -14,6 +14,7 @@ class ProductListView(generic.ListView):
 
 product_list = ProductListView.as_view()
 
+
 class CategoryListView(generic.ListView):
 
     template_name = 'catalog/category.html'
