@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # libs
     # apps
+    'account',
     'core',
     'catalog',
     'areadocliente',
@@ -86,6 +87,17 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'ecommerce',
+#         'USER': 'postgres',
+#         'PASSWORD': 'postgres',
+#         'HOST': 'localhost',
+#         'PORT': '5432',
+#     }
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
@@ -152,8 +164,9 @@ LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = '/'
 # LOGIN_REDIRECT_URL = '/areacliente/'
 LOGOUT_REDIRECT_URL = '/'
+AUTH_USER_MODEL = 'account.User'
 
-try:
-    from .local_settings import *
-except ImportError:
-    pass
+# try:
+#     from .local_settings import *
+# except ImportError:
+#     pass

@@ -1,10 +1,20 @@
 # coding=utf-8
 from django.shortcuts import render
+from django.urls import reverse_lazy
+from django.views.generic import TemplateView, CreateView
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import get_user_model
 from core.forms import ContactForm
 
+User = get_user_model()
 
-def index(request):
-    return render(request, 'index.html')
+
+class IndexView(TemplateView):
+
+    template_name = 'index.html'
+
+
+index = IndexView.as_view()
 
 
 def contact(request):
@@ -18,3 +28,14 @@ def contact(request):
         'success': success
     }
     return render(request, 'contact.html', context)
+
+
+class RegisterView(CreateView):
+
+    form_class = UserCreationForm
+    template_name = 'accounts/register.html'
+    model = User
+    success_url = reverse_lazy('index')
+
+
+register = RegisterView.as_view()
