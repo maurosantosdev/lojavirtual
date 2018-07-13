@@ -29,6 +29,7 @@ class CategoryListView(generic.ListView):
         context['current_category'] = get_object_or_404(Category, slug=self.kwargs['slug'])
         return context
 
+
 category = CategoryListView.as_view()
 
 
