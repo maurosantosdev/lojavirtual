@@ -1,5 +1,6 @@
 # coding=utf-8
 
+from pagseguro import PagSeguro
 from django.db import models
 from django.conf import settings
 
@@ -119,7 +120,6 @@ class Order(models.Model):
     def pagseguro(self):
         self.payment_option = 'pagseguro'
         self.save()
-        from pagseguro import PagSeguro
         pg = PagSeguro(
             email=settings.PAGSEGURO_EMAIL, token=settings.PAGSEGURO_TOKEN,
             config={'sandbox': settings.PAGSEGURO_SANDBOX}

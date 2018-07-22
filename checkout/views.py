@@ -9,7 +9,7 @@ from django.forms import modelformset_factory
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse
-
+from pagseguro import PagSeguro
 
 from catalog.models import Product
 from ecommerce import settings
@@ -131,7 +131,6 @@ class PagSeguroView(LoginRequiredMixin, RedirectView):
 def pagseguro_notification(request):
     notification_code = request.POST.get('notificationCode', None)
     if notification_code:
-        from pagseguro import PagSeguro
         pg = PagSeguro(
             email=settings.PAGSEGURO_EMAIL, token=settings.PAGSEGURO_TOKEN,
             config={'sandbox': settings.PAGSEGURO_SANDBOX}
