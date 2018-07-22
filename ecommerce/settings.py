@@ -171,8 +171,12 @@ LOGOUT_REDIRECT_URL = '/'
 AUTH_USER_MODEL = 'account.User'
 AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
-    'account.backends.ModelBackend',
+    'account.backends01.ModelBackend',
 )
+
+PAGSEGURO_TOKEN = '6FE5663BB8C94897851CB9CF4280FDD4'
+PAGSEGURO_EMAIL = 'mauro@bsd.com.br'
+PAGSEGURO_SANDBOX = True
 
 from django.contrib.messages import constants as messages_constants
 MESSAGE_TAGS = {

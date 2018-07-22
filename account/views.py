@@ -1,6 +1,5 @@
 # coding=utf-8
 
-from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import (
     CreateView, TemplateView, UpdateView, FormView
@@ -34,6 +33,7 @@ class UpdateUserView(LoginRequiredMixin, UpdateView):
 
     def get_object(self):
         return self.request.user
+
 
 class UpdatePasswordView(LoginRequiredMixin, FormView):
 
