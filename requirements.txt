@@ -12,3 +12,4 @@ psycopg2-binary==2.7.5
 whitenoise==3.2
 model-mommy==1.6.0
 pagseguro==0.3.2
+django-paypal==0.5.0

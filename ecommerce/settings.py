@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # libs
+    'paypal.standard.ipn',
     # apps
     'account',
     'core',
@@ -177,6 +178,9 @@ AUTHENTICATION_BACKENDS = (
 PAGSEGURO_TOKEN = '6FE5663BB8C94897851CB9CF4280FDD4'
 PAGSEGURO_EMAIL = 'mauro@bsd.com.br'
 PAGSEGURO_SANDBOX = True
+
+PAYPAL_TEST = True
+PAYPAL_EMAIL = 'mauro@bsd.com.br'
 
 from django.contrib.messages import constants as messages_constants
 MESSAGE_TAGS = {

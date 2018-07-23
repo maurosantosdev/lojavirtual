@@ -1,6 +1,7 @@
 # coding=utf-8
 
 from pagseguro import PagSeguro
+
 from django.db import models
 from django.conf import settings
 
@@ -94,8 +95,6 @@ class Order(models.Model):
         products_ids = self.items.values_list('product')
         return Product.objects.filter(pk__in=products_ids)
 
-
-    # Calculando o preço + quantidade de produtos
     def total(self):
         aggregate_queryset = self.items.aggregate(
             total=models.Sum(
@@ -105,7 +104,6 @@ class Order(models.Model):
         )
         return aggregate_queryset['total']
 
-    # Pagseguro
     def pagseguro_update_status(self, status):
         if status == '3':
             self.status = 1
@@ -140,6 +138,25 @@ class Order(models.Model):
                 }
             )
         return pg
+
+    def paypal(self):
+        self.payment_option = 'paypal'
+        self.save()
+        paypal_dict = {
+            'upload': '1',
+            'business': settings.PAYPAL_EMAIL,
+            'invoice': self.pk,
+            'cmd': '_cart',
+            'currency_code': 'BRL',
+            'charset': 'utf-8',
+        }
+        index = 1
+        for item in self.items.all():
+            paypal_dict['amount_{}'.format(index)] = '%.2f' % item.price
+            paypal_dict['item_name_{}'.format(index)] = item.product.name
+            paypal_dict['quantity_{}'.format(index)] = item.quantity
+            index = index + 1
+        return paypal_dict
 
 
 class OrderItem(models.Model):
