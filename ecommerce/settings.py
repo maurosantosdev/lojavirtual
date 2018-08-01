@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # libs
     'paypal.standard.ipn',
+    'easy_thumbnails',
+    'watson',
     # apps
     'account',
     'core',
@@ -175,6 +177,12 @@ AUTHENTICATION_BACKENDS = (
     'account.backends01.ModelBackend',
 )
 
+THUMBNAIL_ALIASES = {
+    '': {
+        'product_image': {'size': (350, 197), 'crop': True},
+    },
+}
+
 PAGSEGURO_TOKEN = '6FE5663BB8C94897851CB9CF4280FDD4'
 PAGSEGURO_EMAIL = 'mauro@bsd.com.br'
 PAGSEGURO_SANDBOX = True
@@ -191,7 +199,20 @@ MESSAGE_TAGS = {
     messages_constants.ERROR: 'danger',
 }
 
+# cache
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.db.DatabaseCache',
+        'LOCATION': 'cache',
+    }
+}
+
 try:
     from .local_settings import *
 except ImportError:
     pass
+
+STATIC_URL = '/static/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static/')

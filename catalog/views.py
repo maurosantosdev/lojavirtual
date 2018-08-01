@@ -2,14 +2,24 @@
 
 from django.shortcuts import render, get_object_or_404
 from django.views import generic
-
 from .models import Product, Category
+from watson import search as watson
+from django.views.decorators.cache import cache_page
 
 
 class ProductListView(generic.ListView):
-    model = Product
+
     template_name = 'catalog/product_list.html'
     paginate_by = 3
+
+    # Pesquisando no formulario de pesquisa (Filtrando pelo título do Produto | pelo nome da Categoria | pela descrição do produto
+
+    def get_queryset(self):
+        queryset = Product.objects.all()
+        q = self.request.GET.get('q', '')
+        if q:
+            queryset = watson.filter(queryset, q)
+        return queryset
 
 
 product_list = ProductListView.as_view()
@@ -32,7 +42,8 @@ class CategoryListView(generic.ListView):
 
 category = CategoryListView.as_view()
 
-
+# Cache de 60 segundos na pagina de produtos
+@cache_page(60)
 def product(request, slug):
     product = Product.objects.get(slug=slug)
 
