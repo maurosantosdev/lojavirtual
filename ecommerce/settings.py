@@ -158,11 +158,11 @@ django_heroku.settings(locals())
 
 # E-mail
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-DEFAULT_FROM_EMAIL = 'maurodeval41@gmail.com'
+DEFAULT_FROM_EMAIL = 'mauro@bsd.com.br'
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'maurodeval41@gmail.com'
-EMAIL_HOST_PASSWORD = 'MaceioDeveloperMauroSantos176'
+EMAIL_HOST_USER = 'mauro@bsd.com.br'
+EMAIL_HOST_PASSWORD = ''
 EMAIL_PORT = 587
 
 # auth
@@ -182,7 +182,7 @@ THUMBNAIL_ALIASES = {
     },
 }
 
-PAGSEGURO_TOKEN = '6FE5663BB8C94897851CB9CF4280FDD4'
+PAGSEGURO_TOKEN = ''
 PAGSEGURO_EMAIL = 'mauro@bsd.com.br'
 PAGSEGURO_SANDBOX = True
 
