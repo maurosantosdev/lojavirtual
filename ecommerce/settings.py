@@ -182,7 +182,7 @@ THUMBNAIL_ALIASES = {
     },
 }
 
-PAGSEGURO_TOKEN = ''
+PAGSEGURO_TOKEN = 'aaaaaaaaaaaaaaaaaaaaaaaaaaaa'
 PAGSEGURO_EMAIL = 'mauro@bsd.com.br'
 PAGSEGURO_SANDBOX = True
 
