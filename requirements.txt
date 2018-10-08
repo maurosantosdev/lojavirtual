@@ -15,5 +15,4 @@ pagseguro==0.3.2
 django-paypal
 Pillow==5.2.0
 easy-thumbnails==2.5
-django-watson==1.5.2
 braintree-3.47.0
