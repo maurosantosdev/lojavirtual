@@ -22,3 +22,4 @@ python-decouple
 Markdown
 bleach
 python-decouple
+django-watson
