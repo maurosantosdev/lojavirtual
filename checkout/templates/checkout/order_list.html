@@ -11,9 +11,9 @@ Meus Pedidos
 <table class="table table-bordered">
     <thead>
         <tr>
-            <th>
+            <!--<th>
                 ID
-            </th>
+            </th>-->
             <th>
                 Produtos
             </th>
@@ -21,16 +21,19 @@ Meus Pedidos
                 Situação
             </th>
             <th>
-                Data
+                Data da Compra
+            </th>
+            <th>
+                Total
             </th>
         </tr>
     </thead>
     <tbody>
         {% for order in object_list %}
         <tr>
-            <td>
+            <!--<td>
                 <a href="{% url 'checkout:order_detail' order.pk %}">#{{ order.pk }}</a>
-            </td>
+            </td>-->
             <td>
                 {% for product in order.products %}
                 {{ product.name }}{% if not forloop.last %}<br />{% endif %}
@@ -41,6 +44,9 @@ Meus Pedidos
             </td>
             <td>
                 {{ order.created|date:"d/m/Y" }}
+            </td>
+            <td>
+                {{ product.price }}
             </td>
         </tr>
         {% endfor %}

@@ -44,7 +44,6 @@ class CategoryListView(generic.ListView):
 category = CategoryListView.as_view()
 
 # Cache de 60 segundos na pagina de produtos
-@cache_page(60)
 def product(request, slug):
     product = Product.objects.get(slug=slug)
 

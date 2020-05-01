@@ -6,34 +6,44 @@
 {% endblock %}
 
 {% block container %}
-<div class="row">
-            <div class="col-md-8 col-md-offset-2">
-                <div class="page-header">
-                    <h1>Registro</h1>
-                </div>
-                <form class="form-horizontal" method="post">
-                    {% csrf_token %}
-                    {% for error in form.non_field_errors %}
-                    <div class="alert alert-danger">
-                        {{ error }}
-                    </div>
-                    {% endfor %}
-                    <fieldset>
-                        {% for field in form %}
-                        <div class="form-group{% if field.errors %} has-error{% endif %}">
-                          <label for="{{ field.auto_id }}" class="col-md-3 control-label">{{ field.label }}</label>
-                          <div class="col-md-9">
-                            {{ field }}
-                          </div>
-                        </div>
-                        {% endfor %}
-                        <div class="form-group">
-                          <div class="col-md-9 col-md-offset-3">
-                            <button type="submit" class="btn btn-primary">Registrar</button>
-                          </div>
-                        </div>
-                    </fieldset>
+<!--================Login Box Area =================-->
+	<section class="login_box_area section-margin">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-6">
+					<div class="login_box_img">
+						<div class="hover">
+							<h4>Already have an account?</h4>
+							<p>There are advances being made in science and technology everyday, and a good example of this is the</p>
+							<a class="button button-account" href="{% url 'login' %}">Login</a>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-6">
+					<div class="login_form_inner register_form_inner">
+						<h3>Criar sua conta</h3>
+						<form class="row login_form" method="post">
+                            {% csrf_token %}
+                            {% for error in form.non_field_errors %}
+                            <div class="alert alert-danger">
+                                {{ error }}
+                            </div>
+                            {% endfor %}
+                            {% for field in form %}
+                            <div class="col-md-12 form-group{% if field.errors %} has-error{% endif %}">
+                                <label for="{{ field.auto_id }}" class="col-md-3 control-label">{{ field.label }}</label>
+								 {{ field }}
+							</div>
+                            {% endfor %}
 
-                </form>
-            </div>
+							<div class="col-md-12 form-group">
+								<button type="submit" value="submit" class="button button-register w-100">Criar sua conta</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!--================End Login Box Area =================-->
 {% endblock %}

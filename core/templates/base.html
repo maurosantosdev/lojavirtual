@@ -48,12 +48,12 @@
               <li class="nav-item"><a class="nav-link" href="{% url 'contact' %}">Contato</a></li>
 				<li class="nav-item"><a class="nav-link" href="{% url 'contact' %}">|</a></li>
               {% if user.is_authenticated %}
-                  <li class="nav-item"><a class="nav-link">{{ user.username }}</a></li>
-                  <li class="nav-item"><a class="nav-link" href="{% url 'account:index' %}">Conta</a></li>
-                  <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">Sair</a></li>
+				<li class="nav-item"><a class="nav-link"><b style="text-transform: none;">Bem vindo(a): {{ user.username }}</b></a></li>
+                  <li class="nav-item"><a class="nav-link" href="{% url 'account:index' %}" style="color: green;">Conta</a></li>
+                  <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}" style="color: green;">Sair</a></li>
                   {% else %}
                   <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Entrar</a></li>
-                  <li class="nav-item"><a class="nav-link" href="{% url 'account:register' %}">Cadastro</a></li>
+                  <!--<li class="nav-item"><a class="nav-link" href="{% url 'account:register' %}">Cadastro</a></li>-->
               {% endif %}
             </ul>
 

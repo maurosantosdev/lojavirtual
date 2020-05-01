@@ -176,9 +176,10 @@ THUMBNAIL_ALIASES = {
     },
 }
 
-PAGSEGURO_TOKEN = 'aaaaaaaaaaaaaaaaaaaaaaaaaaaa'
+PAGSEGURO_TOKEN = '6FE5663BB8C94897851CB9CF4280FDD4'
 PAGSEGURO_EMAIL = 'mauro@bsd.com.br'
 PAGSEGURO_SANDBOX = True
+
 
 PAYPAL_TEST = True
 PAYPAL_EMAIL = 'mauro@bsd.com.br'
@@ -197,6 +198,42 @@ CACHES = {
     'default': {
         'BACKEND': 'django.core.cache.backends.db.DatabaseCache',
         'LOCATION': 'cache',
+    }
+}
+
+# Logging
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'filters': {
+        'require_debug_false': {
+            '()': 'django.utils.log.RequireDebugFalse',
+        },
+        'require_debug_true': {
+            '()': 'django.utils.log.RequireDebugTrue',
+        },
+    },
+    'formatters': {
+        'verbose': {
+            'format': '%(levelname)s %(asctime)s %(module)s %(process)d %(thread)d %(message)s'
+        },
+        'simple': {
+            'format': '%(levelname)s %(message)s'
+        },
+    },
+    'handlers': {
+        'checkout.views': {
+            'class': 'logging.FileHandler',
+            'level': 'DEBUG',
+            'filters': ['require_debug_true'],
+            'filename': os.path.join(BASE_DIR, 'checkout.views.log'),
+        }
+    },
+    'loggers': {
+        'checkout.views': {
+            'handlers': ['checkout.views'],
+            'level': 'DEBUG',
+        }
     }
 }
 

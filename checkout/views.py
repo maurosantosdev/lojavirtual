@@ -1,7 +1,10 @@
 # coding=utf-8
 
-from pagseguro import PagSeguro
+import logging
 import json
+
+from pagseguro import PagSeguro
+
 from paypal.standard.forms import PayPalPaymentsForm
 from paypal.standard.models import ST_PP_COMPLETED
 from paypal.standard.ipn.signals import valid_ipn_received
@@ -23,10 +26,14 @@ from catalog.models import Product
 from .models import CartItem, Order
 
 
+logger = logging.getLogger('checkout.views')
+
+
 class CreateCartItemView(View):
 
     def get(self, request, *args, **kwargs):
         product = get_object_or_404(Product, slug=self.kwargs['slug'])
+        logger.debug('Produto %s adicionado ao carrinho' % product)
         if self.request.session.session_key is None:
             self.request.session.save()
         cart_item, created = CartItem.objects.add_item(

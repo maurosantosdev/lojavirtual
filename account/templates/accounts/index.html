@@ -3,26 +3,35 @@
  {% block title %} Minha conta {% endblock %}
 
 {% block container %}
-    <br><br>
-    <div class="container margin-top">
-        <ol class="breadcrumb">
-          <li><a href="#">Início</a></li>
-          <li class="active">Minha Conta</li>
-        </ol>
-        <div class="row">
-            <div class="col-md-4">
-                <div class="list-group">
-                  <a href="#" class="list-group-item active">Minha Conta</a>
-                  <a href="{% url 'account:update_user' %}" class="list-group-item">Alterar Dados</a>
-                  <a href="{% url 'account:update_password' %}" class="list-group-item">Alterar Senha</a>
-                  <a href="{% url 'checkout:order_list' %}" class="list-group-item">Meus Pedidos</a>
-                </div>
-            </div>
-            <div class="col-md-8">
+ <!--================Product Description Area =================-->
+	<section class="product_description_area">
+		<div class="container">
+
+			<ul class="nav nav-tabs" id="myTab" role="tablist">
+				<li class="nav-item">
+					<a class="nav-link" href="{% url 'account:index' %}" >Minha Conta</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="{% url 'account:update_user' %}" >Alterar Dados</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="{% url 'account:update_password' %}">Alterar Senha</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="{% url 'checkout:order_list' %}">Meus Pedidos</a>
+				</li>
+			</ul>
+			<div class="tab-content" id="myTabContent">
+				<div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+					<div class="col-md-12">
                 {% block account_container %}
-                    <h2>Bem vindo {{ user.name }}</h2>
+                    <h2 style="text-align: center;">Bem vindo(a) {{ user.name }}</h2>
                 {% endblock %}
             </div>
-        </div>
-    </div>
+				</div>
+
+			</div>
+		</div>
+	</section>
+	<!--================End Product Description Area =================-->
 {% endblock %}
