@@ -1,19 +1,21 @@
 {% load thumbnail %}
-<div class="col-sm-6 col-md-4">
-    <div class="thumbnail">
-        <a href="{{ product.get_absolute_url }}">
+<div class="col-md-6 col-lg-4">
+    <div class="card text-center card-product">
+      <div class="card-product__img">
+          {% if product.image %}
+        <img class="card-img" style="border-radius: 3%;" src="{{ product.image|thumbnail_url:'product_image' }}" alt="">
+          {% else %}
+          <img class="card-img" src="http://placehold.it/350x250" alt="">
+          {% endif %}
+        <ul class="card-product__imgOverlay">
+            <li><a href="{{ product.get_absolute_url }}"><button><i class="ti-search"></i></button></a></li>
+            <li><a href="{% url 'checkout:create_cartitem' product.slug %}"><button><i class="ti-shopping-cart"></i></button></a></li>
+        </ul>
+      </div>
 
-            {% if product.image %}
-                <img src="{{ product.image|thumbnail_url:'product_image' }}" alt="" />
-                {% else %}
-                <img src="http://placehold.it/350x250" alt="" />
-            {% endif %}
-
-        </a>
-        <div class="caption">
-            <h3>{{ product }}</h3>
-            {{ product.description|linebreaks }}
-            <p><a href="{{ product.get_absolute_url }}" class="btn btn-success" role="button">Detalhes</a> <a href="{% url 'checkout:create_cartitem' product.slug %}" class="btn btn-default cart-item-add" role="button">Adicionar</a></p>
-        </div>
+      <div class="card-body">
+        <h4 class="card-product__title"><a href="#">{{ product }}</a></h4>
+        <p class="card-product__price">R$ {{ product.price }}</p>
+      </div>
     </div>
 </div>

@@ -1,63 +1,71 @@
 <!DOCTYPE html>
 {% load static %}
-<html lang="en">
+<html lang="pt-br">
 <head>
-	<meta charset="utf-8">
-	<title>{% block title %}E-commerce{% endblock %}</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <link rel="shortcut icon" href="{% static 'img/ecommerce.png' %}" type="image/x-icon" />
-	<link rel="stylesheet" href="{% static 'assets/bootstrap.min.css' %}" media="screen" />
-	<link rel="stylesheet" href="{% static 'assets/custom.min.css' %}" media="screen" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>{% block title %}E-commerce{% endblock %}</title>
+	<link rel="icon" href="{% static 'assets/img/Fevicon.png' %}" type="image/png">
+  <link rel="stylesheet" href="{% static 'assets/vendors/bootstrap/bootstrap.min.css' %}">
+  <link rel="stylesheet" href="{% static 'assets/vendors/fontawesome/css/all.min.css' %}">
+	<link rel="stylesheet" href="{% static 'assets/vendors/themify-icons/themify-icons.css' %}">
+  <link rel="stylesheet" href="{% static 'assets/vendors/nice-select/nice-select.css' %}">
+  <link rel="stylesheet" href="{% static 'assets/vendors/owl-carousel/owl.theme.default.min.css' %}">
+  <link rel="stylesheet" href="{% static 'assets/vendors/owl-carousel/owl.carousel.min.css' %}">
+
+  <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
 </head>
 <body>
-    <div class="navbar navbar-default navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <a href="{% url 'index' %}" class="navbar-brand">Loja Virtual</a>
-          <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+  <!--================ Start Header Menu Area =================-->
+	<header class="header_area">
+    <div class="main_menu">
+      <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container">
+          <a class="navbar-brand logo_h" href="{% url 'index' %}"><img src="{% static 'assets/img/logo.png' %}" alt=""></a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-        </div>
-        <div class="navbar-collapse collapse" id="navbar-main">
-          <ul class="nav navbar-nav">
-            <li>
-              <a href="{% url 'catalog:product_list' %}">Produtos</a>
-            </li>
-            <li class="dropdown">
-              <a class="dropdown-toggle" data-toggle="dropdown" href="{% url 'catalog:product_list' %}" id="download">Categorias <span class="caret"></span></a>
-              <ul class="dropdown-menu" aria-labelledby="download">
-				{% for category in categories %}
-				<li><a href="{{ category.get_absolute_url }}">{{ category }}</a></li>
-				{% endfor %}
-              </ul>
-            </li>
-			<li>
-				<a href="{% url 'contact' %}">Contato</a>
-			</li>
-          </ul>
-        <form class="navbar-form navbar-left" role="search" action="{% url 'catalog:product_list' %}">
-	        <div class="form-group">
-	          <input name="q" type="text" class="form-control" placeholder="Pesquisar..." />
-	        </div>
-	      </form>
-          <ul class="nav navbar-nav navbar-right">
+          <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
+            <ul class="nav navbar-nav menu_nav ml-auto mr-auto">
+              <li class="nav-item active"><a class="nav-link" href="{% url 'index' %}">Início</a></li>
+              <li class="nav-item submenu dropdown">
+                <a href="{% url 'catalog:product_list' %}" class="nav-link" role="button">Produtos</a>
+							</li>
+              <li class="nav-item submenu dropdown">
+                <a href="{% url 'catalog:product_list' %}" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                  aria-expanded="false">Categorias</a>
+                <ul class="dropdown-menu">
+					{% for category in categories %}
+                  <li class="nav-item"><a class="nav-link" href="{{ category.get_absolute_url }}">{{ category }}</a></li>
+					{% endfor %}
+                </ul>
+							</li>
+
+              <li class="nav-item"><a class="nav-link" href="{% url 'contact' %}">Contato</a></li>
+				<li class="nav-item"><a class="nav-link" href="{% url 'contact' %}">|</a></li>
               {% if user.is_authenticated %}
-                  <li><a>{{ user.username }}</a></li>
-                  <li><a href="{% url 'account:index' %}">Conta</a></li>
-                  <li><a href="{% url 'logout' %}">Sair</a></li>
+                  <li class="nav-item"><a class="nav-link">{{ user.username }}</a></li>
+                  <li class="nav-item"><a class="nav-link" href="{% url 'account:index' %}">Conta</a></li>
+                  <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">Sair</a></li>
                   {% else %}
-                  <li><a href="{% url 'login' %}">Entrar</a></li>
-                  <li><a href="{% url 'account:register' %}">Cadastro</a></li>
+                  <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Entrar</a></li>
+                  <li class="nav-item"><a class="nav-link" href="{% url 'account:register' %}">Cadastro</a></li>
               {% endif %}
-          <li><a href="{% url 'checkout:cart_item' %}">Carrinho</a></li>
-          </ul>
+            </ul>
+
+            <ul class="nav-shop">
+              <li class="nav-item"><button><i class="ti-search"></i></button></li>
+              <li class="nav-item"><a href="{% url 'checkout:cart_item' %}"><button><i class="ti-shopping-cart"></i><span class="nav-shop__circle"></span></button></a></li>
+            </ul>
+          </div>
         </div>
-      </div>
+      </nav>
     </div>
-    <div class="container margin-top">
+		<div class="container margin-top">
     <br>
         {% block messages %}
             {% for message in messages %}
@@ -68,24 +76,111 @@
 
         {% endblock %}
     </div>
-    <div class="container">
-        {% block container %}{% endblock %}
-		<footer>
-			<div class="row">
-			  <div class="col-lg-12">
-			    <ul class="list-unstyled">
-			      <li class="pull-right"><a href="#top">Voltar ao Topo</a></li>
-			      <li><a href="">Início</a></li>
-			      <li><a href="">Produtos</a></li>
-			      <li><a href="">Contato</a></li>
-			      <li><a href="">Termos e Privacidade</a></li>
-			    </ul>
-			  </div>
+  </header>
+	<!--================ End Header Menu Area =================-->
+
+  {% block container %}{% endblock %}
+
+
+  <!--================ Start footer Area  =================-->
+	<footer class="footer">
+		<div class="footer-area">
+			<div class="container">
+				<div class="row section_gap">
+					<div class="col-lg-3 col-md-6 col-sm-6">
+						<div class="single-footer-widget tp_widgets">
+							<h4 class="footer_title large_title">Our Mission</h4>
+							<p>
+								So seed seed green that winged cattle in. Gathering thing made fly you're no
+								divided deep moved us lan Gathering thing us land years living.
+							</p>
+							<p>
+								So seed seed green that winged cattle in. Gathering thing made fly you're no divided deep moved
+							</p>
+						</div>
+					</div>
+					<div class="offset-lg-1 col-lg-2 col-md-6 col-sm-6">
+						<div class="single-footer-widget tp_widgets">
+							<h4 class="footer_title">Quick Links</h4>
+							<ul class="list">
+								<li><a href="#">Home</a></li>
+								<li><a href="#">Shop</a></li>
+								<li><a href="#">Blog</a></li>
+								<li><a href="#">Product</a></li>
+								<li><a href="#">Brand</a></li>
+								<li><a href="#">Contact</a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="col-lg-2 col-md-6 col-sm-6">
+						<div class="single-footer-widget instafeed">
+							<h4 class="footer_title">Gallery</h4>
+							<ul class="list instafeed d-flex flex-wrap">
+								<li><img src="{% static 'assets/img/gallery/r1.jpg' %}" alt=""></li>
+								<li><img src="{% static 'assets/img/gallery/r2.jpg' %}" alt=""></li>
+								<li><img src="{% static 'assets/img/gallery/r3.jpg' %}" alt=""></li>
+								<li><img src="{% static 'assets/img/gallery/r5.jpg' %}" alt=""></li>
+								<li><img src="{% static 'assets/img/gallery/r7.jpg' %}" alt=""></li>
+								<li><img src="{% static 'assets/img/gallery/r8.jpg' %}" alt=""></li>
+							</ul>
+						</div>
+					</div>
+					<div class="offset-lg-1 col-lg-3 col-md-6 col-sm-6">
+						<div class="single-footer-widget tp_widgets">
+							<h4 class="footer_title">Contact Us</h4>
+							<div class="ml-40">
+								<p class="sm-head">
+									<span class="fa fa-location-arrow"></span>
+									Head Office
+								</p>
+								<p>123, Main Street, Your City</p>
+
+								<p class="sm-head">
+									<span class="fa fa-phone"></span>
+									Phone Number
+								</p>
+								<p>
+									+123 456 7890 <br>
+									+123 456 7890
+								</p>
+
+								<p class="sm-head">
+									<span class="fa fa-envelope"></span>
+									Email
+								</p>
+								<p>
+									free@infoexample.com <br>
+									www.infoexample.com
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
-		</footer>
-	</div>
-	<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-    <script src="{% static 'assets/bootstrap.min.js' %}"></script>
-	{% block scripts %}{% endblock %}
+		</div>
+
+		<div class="footer-bottom">
+			<div class="container">
+				<div class="row d-flex">
+					<p class="col-lg-12 footer-text text-center">
+						<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+				</div>
+			</div>
+		</div>
+	</footer>
+	<!--================ End footer Area  =================-->
+
+
+
+  <script src="{% static 'assets/vendors/jquery/jquery-3.2.1.min.js' %}"></script>
+  <script src="{% static 'assets/vendors/bootstrap/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'assets/vendors/skrollr.min.js' %}"></script>
+  <script src="{% static 'assets/vendors/owl-carousel/owl.carousel.min.js' %}"></script>
+  <script src="{% static 'assets/vendors/nice-select/jquery.nice-select.min.js' %}"></script>
+  <script src="{% static 'assets/vendors/jquery.ajaxchimp.min.js' %}"></script>
+  <script src="{% static 'assets/vendors/mail-script.js' %}"></script>
+  <script src="{% static 'assets/js/main.js' %}"></script>
 </body>
 </html>

@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-
+{% load static %}
 {% load pagination %}
 
 {% block title %}
@@ -7,15 +7,33 @@
 {% endblock %}
 
 {% block container %}
-    <div class="page-header">
-			<h1>Produtos</h1>
-		</div>
-		<div class="row">
-        {% for product in product_list %}
-        {% include "catalog/_product.html" %}
-        {% endfor %}
-		</div>
+    <section class="section-margin--small mb-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-xl-3 col-lg-4 col-md-5">
+          <div class="sidebar-filter">
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-12 col-lg-8 col-md-7">
+          <section class="lattest-product-area pb-40 category-list">
+            <div class="row">
+                {% for product in product_list %}
+                {% include "catalog/_product.html" %}
+                {% endfor %}
+            </div>
+          </section>
+          <!-- End Best Seller -->
+        </div>
+      </div>
+    </div>
+  </section>
+	<!-- ================ category section end ================= -->
+
+
     {% pagination request paginator page_obj %}
+
+
 {% endblock %}
 
 {% block scripts %}

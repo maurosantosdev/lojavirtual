@@ -1,5 +1,5 @@
 # coding=utf-8
-
+from django.http import Http404
 from django.shortcuts import render, get_object_or_404
 from django.views import generic
 from .models import Product, Category
@@ -34,9 +34,10 @@ class CategoryListView(generic.ListView):
     def get_queryset(self):
         return Product.objects.filter(category__slug=self.kwargs['slug'])
 
-    def get_context_data(self, *, object_list=None, **kwargs):
+    def get_context_data(self, **kwargs):
         context = super(CategoryListView, self).get_context_data(**kwargs)
-        context['current_category'] = get_object_or_404(Category, slug=self.kwargs['slug'])
+        context['current_category'] = get_object_or_404(
+            Category, slug=self.kwargs['slug'])
         return context
 
 
