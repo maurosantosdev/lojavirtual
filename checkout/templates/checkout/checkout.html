@@ -5,20 +5,20 @@ Finalização da Compra
 {% endblock %}
 
 {% block container %}
-<ol class="breadcrumb">
-  <li><a href="{% url 'index' %}">Início</a></li>
-  <li><a href="{% url 'checkout:cart_item' %}">Carrinho de Compras</a></li>
-  <li class="active">Escolha a forma de pagamento</li>
-</ol>
-<div class="page-header">
-    <h1>Finalização das Compras</h1>
-</div>
-<div class="row">
-    <div class="col-md-6 col-md-offset-2">
-        <a href="{% url 'checkout:pagseguro_view' order.pk %}" class="btn btn-success">Pagar com Pagseguro</a>
+<!--================Checkout Area =================-->
+  <section class="checkout_area section-margin--small">
+    <div class="container">
+        <div class="returning_customer">
+            <div class="check_title">
+                <h2>Pagar com Pagseguro </h2>
+            </div>
+            <br>
+                <div class="col-md-12 form-group">
+                    <a href="{% url 'checkout:pagseguro_view' order.pk %}"><button type="submit" value="submit" class="button button-login">Pagar com Pagseguro</button></a>
+                </div>
+        <p style="color: blue;"><b>Este site é um sistema demonstrativo, não efetue compras nele.</b></p>
+        </div>
     </div>
-    <div class="col-md-4">
-        <a href="{% url 'checkout:paypal_view' order.pk %}" class="btn btn-primary">Pagar com Paypal</a>
-    </div>
-</div>
+  </section>
+  <!--================End Checkout Area =================-->
 {% endblock %}

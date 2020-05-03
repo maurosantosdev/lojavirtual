@@ -5,33 +5,62 @@
 {% endblock %}
 
 {% block container %}
-    <div class="page-header">
-			<h1>Contato</h1>
-            {% if success %}
+<!-- ================ contact section start ================= -->
+  <section class="section-margin--small">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 col-lg-3 mb-4 mb-md-0">
+          <div class="media contact-info">
+            <span class="contact-info__icon"><i class="ti-home"></i></span>
+            <div class="media-body">
+              <h3>Boa Vista - Roraima</h3>
+              <p>Canarinho</p>
+            </div>
+          </div>
+          <div class="media contact-info">
+            <span class="contact-info__icon"><i class="ti-headphone"></i></span>
+            <div class="media-body">
+              <h3><a href="tel:454545654">(95) 98118-9425</a></h3>
+              <p>Segunda à Sexta 8:00 às 18:00</p>
+            </div>
+          </div>
+          <div class="media contact-info">
+            <span class="contact-info__icon"><i class="ti-email"></i></span>
+            <div class="media-body">
+              <h3><a href="mailto:support@colorlib.com">maurodenison@gmail.com</a></h3>
+              <p>Nos envie sua dúvida!</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-8 col-lg-9">
+			{% if success %}
                 <div class="alert alert-success">
                     Mensagem enviada com sucesso.
                 </div>
             {% endif %}
-			<form class="form-horizontal" action="" method="post">
-                {% csrf_token %}
-				<fieldset>
-                    {% for field in form %}
-				    <div class="form-group{% if field.errors %} has-error{% endif %}">
-				      <label for="{{ field.auto_id }}" class="col-md-3 control-label">{{ field.label_tag }}</label>
-				      <div class="col-md-9">
-				        {{ field }}
-                          {% for error in field.errors %}
-                              <span class="help-block">{{ error }}</span>
-                          {% endfor %}
-				      </div>
-				    </div>
-				    {% endfor %}
-					<div class="form-group">
-				      <div class="col-md-9 col-md-offset-3">
-				        <button type="submit" class="btn btn-primary">Enviar</button>
-				      </div>
-				    </div>
-				</fieldset>
-			</form>
-		</div>
+          <form action="" class="form-contact contact_form" method="post" id="contactForm">
+			  {% csrf_token %}
+            <div class="row">
+              <div class="col-lg-5">
+                <div class="form-group">
+					{{ form.name }}
+                </div>
+                <div class="form-group">
+					{{ form.email }}
+                </div>
+              </div>
+              <div class="col-lg-7">
+                <div class="form-group">
+					{{ form.message }}
+				</div>
+              </div>
+            </div>
+            <div class="form-group text-center text-md-right mt-3">
+              <button type="submit" class="button button--active button-contactForm">Enviar mensagem</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
 {% endblock %}

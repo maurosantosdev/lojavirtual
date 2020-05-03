@@ -6,12 +6,29 @@
 {% endblock %}
 
 {% block container %}
+<style>
+    input{
+        display: block;
+        width: 100%;
+        padding: 8px 16px;
+        line-height: 25px;
+        font-size: 14px;
+        font-weight: 500;
+        font-family: inherit;
+        border-radius: 6px;
+        -webkit-appearance: none;
+        color: black;
+        border: 1px solid var(--input-border);
+        background: #f1f6f7;
+        transition: border .3s ease;
+    }
+</style>
 <!--================Login Box Area =================-->
 	<section class="login_box_area section-margin">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-6">
-					<div class="login_box_img">
+					<div class="login_box_img" style="height: 697px;">
 						<div class="hover">
 							<h4>Already have an account?</h4>
 							<p>There are advances being made in science and technology everyday, and a good example of this is the</p>
@@ -31,7 +48,7 @@
                             {% endfor %}
                             {% for field in form %}
                             <div class="col-md-12 form-group{% if field.errors %} has-error{% endif %}">
-                                <label for="{{ field.auto_id }}" class="col-md-3 control-label">{{ field.label }}</label>
+                                <label for="{{ field.auto_id }}" class="col-md-12 control-label">{{ field.label }}</label>
 								 {{ field }}
 							</div>
                             {% endfor %}

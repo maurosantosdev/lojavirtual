@@ -23,7 +23,7 @@ from django.http import HttpResponse
 
 from catalog.models import Product
 
-from .models import CartItem, Order
+from .models import CartItem, Order, OrderItem
 
 
 logger = logging.getLogger('checkout.views')
@@ -115,7 +115,8 @@ class OrderListView(LoginRequiredMixin, ListView):
     paginate_by = 10
 
     def get_queryset(self):
-        return Order.objects.filter(user=self.request.user).order_by('-pk')
+        order = Order.objects.filter(user=self.request.user).order_by('-pk')
+        return order
 
 
 class OrderDetailView(LoginRequiredMixin, DetailView):

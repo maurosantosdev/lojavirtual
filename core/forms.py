@@ -11,7 +11,7 @@ class ContactForm(forms.Form):
                              widget=forms.TextInput(attrs={'placeholder': 'E-mail', 'class': 'form-control'}))
     message = forms.CharField(label='Mensagem',
                               widget=forms.Textarea(
-                                  attrs={'placeholder': 'Mensagem', 'class': 'form-control', 'cols': 60, 'rows': 5}))
+                                  attrs={'placeholder': 'Mensagem', 'class': 'form-control different-control w-100', 'cols': 30, 'rows': 5}))
 
     def send_mail(self):
         name = self.cleaned_data['name']

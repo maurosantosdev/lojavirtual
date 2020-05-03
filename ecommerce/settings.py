@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'catalog',
     'areadocliente',
     'checkout',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -87,14 +88,24 @@ WSGI_APPLICATION = 'ecommerce.wsgi.application'
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
 # BASE DA DADOS MYSQL
+#DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.mysql',
+#        'NAME': 'lojavirtual',
+#        'HOST': '127.0.0.1',
+#        'PORT': '3306',
+#        'USER': 'maurosantos',
+#        'PASSWORD': 'Casamento24!slackwarethiago66277051253',
+#    }
+#}
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'lojavirtual',
-        'HOST': '127.0.0.1',
-        'PORT': '3306',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'ecommerce',
         'USER': 'maurosantos',
-        'PASSWORD': 'Casamento24!slackwarethiago66277051253',
+        'PASSWORD': '12345678',
+        'HOST': '127.0.0.1',
+        'PORT': '5432',
     }
 }
 
@@ -130,6 +141,8 @@ USE_L10N = True
 
 USE_TZ = True
 
+USE_THOUSAND_SEPARATOR = True
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
@@ -148,7 +161,7 @@ DEFAULT_FROM_EMAIL = 'mauro@bsd.com.br'
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'mauro@bsd.com.br'
-EMAIL_HOST_PASSWORD = ''
+EMAIL_HOST_PASSWORD = 'Casamento24!slackwarethiago66277051253'
 EMAIL_PORT = 587
 
 # auth

@@ -5,26 +5,62 @@ Pedido #{{ order.pk }}
 {% endblock %}
 
 {% block account_container %}
-<h2>Pedido #{{ order.pk }}</h2>
-<dl class="dl-horizontal">
-    <dt>Total R$</dt>
-    <dd>{{ object.total|floatformat:"2" }}</dd>
-    <dt>Situação</dt>
-    <dd>{{ object.get_status_display }}</dd>
-    <dt>Data</dt>
-    <dd>{{ object.created|date:"d/m/Y H:i" }}</dd>
-    <dt>Meio de Pagamento</dt>
-    <dd>{{ object.get_payment_option_display }}</dd>
-</dl>
-<h3>Itens do Pedido</h3>
-{% for item in object.items.all %}
-    <dl class="dl-horizontal">
-        <dt>Produto</dt>
-        <dd>{{ item.product }}</dd>
-        <dt>Quantidade</dt>
-        <dd>{{ item.quantity }}</dd>
-        <dt>Preço</dt>
-        <dd>R$ {{ item.price|floatformat:"2" }}</dd>
-    </dl>
-{% endfor %}
+<div class="order_details_table">
+        <h2>Pedido #{{ order.pk }}</h2>
+        <h2>Detalhes</h2>
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+              <tr>
+                <th style="text-align: center;">Produto</th>
+                <th style="text-align: center;">Quantidade</th>
+                <th style="text-align: center;">Preço</th>
+              </tr>
+            </thead>
+            <tbody>
+            {% for item in object.items.all %}
+              <tr>
+                <td style="text-align: center;">
+                  <p>{{ item.product }}</p>
+                </td>
+                <td style="text-align: center;">
+                  <h5>{{ item.quantity }}</h5>
+                </td>
+                <td style="text-align: center;" >
+                  <p>R$ {{ item.price|floatformat:"2" }}</p>
+                </td>
+              </tr>
+            {% endfor %}
+
+            <tr>
+                <thead>
+                  <tr>
+                    <th style="text-align: center;">Situação</th>
+                    <th style="text-align: center;">Data</th>
+                    <th style="text-align: center;">Meio de Pagamento</th>
+                  </tr>
+                </thead>
+                <td style="text-align: center;">{{ object.get_status_display }}</td>
+                <td style="text-align: center;">{{ object.created|date:"d/m/Y H:i" }}</td>
+                <td style="text-align: center;">{{ object.get_payment_option_display }}</td>
+            </tr>
+
+              <tr>
+                <td>
+                  <h4 style="text-align: center;">Total</h4>
+                </td>
+                <td>
+                  <h5></h5>
+                </td>
+                <td>
+                  <p style="text-align: center;">{{ object.total|floatformat:"2" }}</p>
+                </td>
+              </tr>
+
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
 {% endblock %}

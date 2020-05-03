@@ -1,18 +1,33 @@
 # coding=utf-8
 from django.shortcuts import render
 from django.urls import reverse_lazy
-from django.views.generic import TemplateView, CreateView
+from django.views.generic import CreateView
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import get_user_model
 from core.forms import ContactForm
 from django.contrib import messages
+from django.views import generic
+from watson import search as watson
+
+from catalog.models import Product
 
 User = get_user_model()
 
 
-class IndexView(TemplateView):
+class IndexView(generic.ListView):
 
     template_name = 'index.html'
+
+    paginate_by = 10
+
+    # Pesquisando no formulario de pesquisa (Filtrando pelo título do Produto | pelo nome da Categoria | pela descrição do produto
+
+    def get_queryset(self):
+        queryset = Product.objects.all()
+        q = self.request.GET.get('q', '')
+        if q:
+            queryset = watson.filter(queryset, q)
+        return queryset
 
 
 index = IndexView.as_view()

@@ -10,11 +10,11 @@ Meus Pedidos
 <h2>Meus Pedidos</h2>
 <table class="table table-bordered">
     <thead>
-        <tr>
-            <!--<th>
-                ID
-            </th>-->
+        <tr style="text-align: center;">
             <th>
+                Ver Pedido
+            </th>
+            <th style="color: black;">
                 Produtos
             </th>
             <th>
@@ -24,29 +24,31 @@ Meus Pedidos
                 Data da Compra
             </th>
             <th>
-                Total
+                Valor
             </th>
         </tr>
     </thead>
     <tbody>
         {% for order in object_list %}
         <tr>
-            <!--<td>
+            <td style="font-size: 12px;">
                 <a href="{% url 'checkout:order_detail' order.pk %}">#{{ order.pk }}</a>
-            </td>-->
-            <td>
+            </td>
+            <td style="font-size: 12px;">
                 {% for product in order.products %}
                 {{ product.name }}{% if not forloop.last %}<br />{% endif %}
                 {% endfor %}
             </td>
-            <td>
+            <td style="font-size: 12px;">
                 {{ order.get_status_display }}
             </td>
-            <td>
+            <td style="font-size: 12px;">
                 {{ order.created|date:"d/m/Y" }}
             </td>
-            <td>
-                {{ product.price }}
+            <td style="font-size: 12px;">
+                {% for product in order.products %}
+                {{ product.price }}{% if not forloop.last %}<br />{% endif %}
+                {% endfor %}
             </td>
         </tr>
         {% endfor %}
