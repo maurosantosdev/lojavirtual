@@ -24,7 +24,7 @@ class UserAdmin(BaseUserAdmin):
             'fields': ('username', 'email')
         }),
         ('Informações Básicas', {
-            'fields': ('name', 'last_login')
+            'fields': ('name', 'last_login', 'rua', 'numero', 'complemento', 'bairro')
         }),
         ('Permissões', {
             'fields': (
@@ -35,6 +35,7 @@ class UserAdmin(BaseUserAdmin):
         ),
     )
     list_display = ['username', 'name', 'email', 'is_active', 'is_staff', 'date_joined']
+    search_fields = ['username']
 
 
 admin.site.register(User, UserAdmin)

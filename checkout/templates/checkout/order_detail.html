@@ -42,7 +42,13 @@ Pedido #{{ order.pk }}
                 </thead>
                 <td style="text-align: center;">{{ object.get_status_display }}</td>
                 <td style="text-align: center;">{{ object.created|date:"d/m/Y H:i" }}</td>
-                <td style="text-align: center;">{{ object.get_payment_option_display }}</td>
+                <td style="text-align: center;">
+                    {% if object.get_payment_option_display == 'deposit' %}
+                    <a href="{% url 'checkout:pagseguro_view' order.pk %}"><button type="submit" value="submit" class="button button-login">Pagar com Pagseguro</button></a>
+                    {% else %}
+                    <p>{{ object.get_payment_option_display }}</p>
+                    {% endif %}
+                </td>
             </tr>
 
               <tr>

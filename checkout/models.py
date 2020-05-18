@@ -65,9 +65,7 @@ class Order(models.Model):
     )
 
     PAYMENT_OPTION_CHOICES = (
-        ('deposit', 'Depósito'),
         ('pagseguro', 'PagSeguro'),
-        ('paypal', 'Paypal'),
     )
 
     user = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name='Usuário', on_delete=models.CASCADE)

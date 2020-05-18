@@ -17,3 +17,10 @@ class UserAdminForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ['username', 'email', 'name', 'is_active', 'is_staff']
+
+
+class UpdateAddressForm(forms.ModelForm):
+
+    class Meta:
+        model = User
+        fields = ['rua', 'numero', 'complemento', 'bairro']

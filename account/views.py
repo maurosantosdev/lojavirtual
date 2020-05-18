@@ -35,6 +35,17 @@ class UpdateUserView(LoginRequiredMixin, UpdateView):
         return self.request.user
 
 
+class UpdateAddressView(LoginRequiredMixin, UpdateView):
+
+    model = User
+    template_name = 'accounts/update_address.html'
+    fields = ['rua', 'numero', 'complemento', 'bairro']
+    success_url = reverse_lazy('account:index')
+
+    def get_object(self):
+        return self.request.user
+
+
 class UpdatePasswordView(LoginRequiredMixin, FormView):
 
     template_name = 'accounts/update_password.html'
@@ -55,3 +66,4 @@ index = IndexView.as_view()
 register = RegisterView.as_view()
 update_user = UpdateUserView.as_view()
 update_password = UpdatePasswordView.as_view()
+update_address = UpdateAddressView.as_view()

@@ -166,7 +166,7 @@ EMAIL_PORT = 587
 
 # auth
 LOGIN_URL = 'login'
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/conta/'
 # LOGIN_REDIRECT_URL = '/areacliente/'
 LOGOUT_REDIRECT_URL = '/'
 AUTH_USER_MODEL = 'account.User'
