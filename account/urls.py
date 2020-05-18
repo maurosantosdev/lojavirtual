@@ -10,5 +10,5 @@ urlpatterns = [
     path('alterar-dados/', views.update_user, name='update_user'),
     path('alterar-senha/', views.update_password, name='update_password'),
     path('registro/', views.register, name='register'),
-    path('address/', views.update_address, name='address')
+    path('address/', views.update_address, name='update_user')
 ]
