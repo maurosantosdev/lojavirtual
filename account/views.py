@@ -40,7 +40,7 @@ class UpdateAddressView(LoginRequiredMixin, UpdateView):
     model = User
     template_name = 'accounts/update_address.html'
     fields = ['rua', 'numero', 'complemento', 'bairro']
-    success_url = reverse_lazy('update_address')
+    success_url = reverse_lazy('account:index')
 
     def get_object(self):
         return self.request.user
