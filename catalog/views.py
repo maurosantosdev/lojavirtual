@@ -10,7 +10,7 @@ from django.views.decorators.cache import cache_page
 class ProductListView(generic.ListView):
 
     template_name = 'catalog/product_list.html'
-    paginate_by = 3
+    paginate_by = 9
 
     # Pesquisando no formulario de pesquisa (Filtrando pelo título do Produto | pelo nome da Categoria | pela descrição do produto
 
@@ -29,7 +29,7 @@ class CategoryListView(generic.ListView):
 
     template_name = 'catalog/category.html'
     context_object_name = 'product_list'
-    paginate_by = 3
+    paginate_by = 9
 
     def get_queryset(self):
         return Product.objects.filter(category__slug=self.kwargs['slug'])

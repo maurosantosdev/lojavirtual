@@ -24,6 +24,23 @@
 			margin-left: 50%;
 		}
 	</style>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-165464364-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-165464364-1');
+</script>
+<style>
+	.instagram{
+	}
+img.box {
+    width: 150px;
+    display: inline-block;
+}
+</style>
 </head>
 <body>
   <!--================ Start Header Menu Area =================-->
@@ -121,19 +138,14 @@
 							</ul>
 						</div>
 					</div>
-					<div class="col-lg-2 col-md-6 col-sm-6">
+					<!--<div class="col-lg-2 col-md-8 col-sm-6">
 						<div class="single-footer-widget instafeed">
 							<h4 class="footer_title">Instagram</h4>
 							<ul class="list instafeed d-flex flex-wrap">
-								<li><img src="{% static 'assets/img/gallery/r1.jpg' %}" alt=""></li>
-								<li><img src="{% static 'assets/img/gallery/r2.jpg' %}" alt=""></li>
-								<li><img src="{% static 'assets/img/gallery/r3.jpg' %}" alt=""></li>
-								<li><img src="{% static 'assets/img/gallery/r5.jpg' %}" alt=""></li>
-								<li><img src="{% static 'assets/img/gallery/r7.jpg' %}" alt=""></li>
-								<li><img src="{% static 'assets/img/gallery/r8.jpg' %}" alt=""></li>
+								<div class="posts"></div>
 							</ul>
 						</div>
-					</div>
+					</div>-->
 					<div class="offset-lg-1 col-lg-3 col-md-6 col-sm-6">
 						<div class="single-footer-widget tp_widgets">
 							<h4 class="footer_title">Contato</h4>
@@ -189,5 +201,38 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
   <script src="{% static 'assets/vendors/jquery.ajaxchimp.min.js' %}"></script>
   <script src="{% static 'assets/vendors/mail-script.js' %}"></script>
   <script src="{% static 'assets/js/main.js' %}"></script>
+<!-- INSTAGRAM -->
+<script>
+  function nFormatter(num) {
+    if (num >= 1000000000) {
+      return (num / 1000000000).toFixed(1).replace(/\.0$/, '') + 'G';
+    }
+    if (num >= 1000000) {
+      return (num / 1000000).toFixed(1).replace(/\.0$/, '') + 'M';
+    }
+    if (num >= 1000) {
+      return (num / 1000).toFixed(1).replace(/\.0$/, '') + 'K';
+    }
+    return num;
+  }
+  $.ajax({
+    url: "https://www.instagram.com/miniaturasmaceio?__a=1",
+    type: 'get',
+    success: function(response) {
+      posts = response.graphql.user.edge_owner_to_timeline_media.edges;
+      posts_html = '';
+      for (var i = 0; i < posts.length; i++) {
+        url = posts[i].node.display_url;
+        likes = posts[i].node.edge_liked_by.count;
+        comments = posts[i].node.edge_media_to_comment.count;
+	posts_html += '<a href="' + url + '"><img class="box" src="' + url + '"></a>';
+        // Post Original
+        //posts_html += '<div class="col-md-4 equal-height"><a href="'+url+'"><img style="min-height:50px;background-color:#fff;width:100%" src="'+url+'"></a><div class="row like-comment"><div class="col-md-6">'+nFormatter(likes)+' Curtidas</div><div class="col-md-6">'+nFormatter(comments)+' Comentários</div></div></div>';
+      }
+      $(".posts").html(posts_html);
+    }
+  });
+</script>
+<!-- INSTAGRAM -->
 </body>
 </html>

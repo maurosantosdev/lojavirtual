@@ -18,7 +18,7 @@ class IndexView(generic.ListView):
 
     template_name = 'index.html'
 
-    paginate_by = 10
+    paginate_by = 12
 
     # Pesquisando no formulario de pesquisa (Filtrando pelo título do Produto | pelo nome da Categoria | pela descrição do produto
 

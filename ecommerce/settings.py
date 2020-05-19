@@ -101,9 +101,9 @@ WSGI_APPLICATION = 'ecommerce.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'ecommerce',
+        'NAME': 'lojavirtual',
         'USER': 'maurosantos',
-        'PASSWORD': '12345678',
+        'PASSWORD': 'Casamento24!',
         'HOST': '127.0.0.1',
         'PORT': '5432',
     }
