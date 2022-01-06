@@ -4,4 +4,4 @@ Integração:
 - Paypal
 - Pagseguro
 
-mauro@bsd.com.br
+maurodenison@gmail.com
